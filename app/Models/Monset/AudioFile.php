@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Monset;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Suggestion extends Model
+class AudioFile extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['name', 'email', 'title', 'content'];
 }

@@ -16,7 +16,7 @@ Route::post('/suggestions', function (Request $request){
         'content' => 'required|string'
     ]);
 
-    $suggestion = \App\Models\Suggestion::create($request->all());
+    $suggestion = \App\Models\Core\Suggestion::create($request->all());
 
     return response()->json($suggestion, 201);
 });
