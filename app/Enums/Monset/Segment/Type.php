@@ -1,6 +1,6 @@
 <?php
 
 namespace App\Enums\Monset\Segment;
-enum type{
+enum Type{
     const verse = 'verse';
 }

@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->string('type');
             $table->unsignedBigInteger('type_id');
+            $table->foreignId('audio_file_id')->constrained();
 
         });
     }
