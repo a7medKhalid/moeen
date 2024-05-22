@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('start_verse_id');
             $table->unsignedBigInteger('end_verse_id');
-            $table->foreignId('audio_file_id')->constrained();
+            $table->foreignId('audio_file_id')->nullable()->constrained();
             $table->foreignId('clip_id')->constrained();
 
         });
