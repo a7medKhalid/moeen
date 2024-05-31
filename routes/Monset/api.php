@@ -18,8 +18,9 @@ Route::get('clips/{id}', function ($id) {
     }
 
     return response()->json([
-        'clip' => $clip,
-        'verses' => $verses,
+        'id' => $clip->id,
+        'title' => $clip->title,
+        'description' => $clip->descrbtion,
         'segments' => $segments,
     ]);
 });

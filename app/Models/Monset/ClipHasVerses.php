@@ -5,6 +5,7 @@ namespace App\Models\Monset;
 use App\Enums\Monset\Segment\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ClipHasVerses extends Pivot
@@ -16,6 +17,10 @@ class ClipHasVerses extends Pivot
         return 'clip_has_verses';
     }
 
+    public function defaultAudioFile(): BelongsTo {
+        return $this->belongsTo(AudioFile::class);
+    }
+
     public function getRelatedAudioFiles(){
         $segments = Segment::where('type', Type::verse)->where(function ($query)  {
             $query->where('type_id', $this->start_verse_id)
@@ -24,10 +29,14 @@ class ClipHasVerses extends Pivot
 
         return $segments->map(function ($segment){
            return [
-               'start_time' => $segment->start_time,
-               'end_time' => $segment->end_time,
-               'audio_file' => $segment->audioFile
+               'id' => $segment->id,
+               'start' => (int)$segment->start_time,
+               'end' => (int)$segment->end_time,
+               'url' => $segment->audioFile?->url
+//               'url' => $segment->defaultAudioFile?->url,
            ];
-        });
+        })->first();
     }
+
+
 }
