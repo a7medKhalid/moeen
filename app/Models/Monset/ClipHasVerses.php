@@ -22,10 +22,7 @@ class ClipHasVerses extends Pivot
     }
 
     public function getRelatedAudioFiles(){
-        $segments = Segment::where('type', Type::verse)->where(function ($query)  {
-            $query->where('type_id', $this->start_verse_id)
-                ->orWhere('type_id', $this->start_verse_id);
-        })->get();
+        $segments = Segment::where('type', Type::verse)->whereBetween('type_id', [$this->start_verse_id, $this->end_verse_id])->get();
 
         return $segments->map(function ($segment){
            return [
@@ -35,7 +32,7 @@ class ClipHasVerses extends Pivot
                'url' => $segment->audioFile?->url
 //               'url' => $segment->defaultAudioFile?->url,
            ];
-        })->first();
+        });
     }
 
 
