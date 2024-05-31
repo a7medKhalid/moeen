@@ -31,17 +31,28 @@ class ClipResource extends Resource
                     ->required(),
 
                 Forms\Components\Repeater::make('verses')
+                    ->columnSpanFull()
                     ->relationship()
                     ->orderColumn('order')
                     ->reorderable()
                     ->schema([
-                        Forms\Components\Select::make('start_verse_id')
-                            ->options(Verse::limit(100)->get()->pluck('id'))
-                            ->optionsLimit(10),
-
-                        Forms\Components\Select::make('end_verse_id')
-                            ->options(Verse::limit(100)->get()->pluck('id'))
-                            ->optionsLimit(10),
+                        Forms\Components\Grid::make(3)
+                            ->schema([
+                                Forms\Components\Select::make('surah_id')
+                                    ->live()
+                                    ->dehydrated(false)
+                                    ->searchable()
+                                    ->options(Surah::all()->pluck('id', 'id'))
+                                    ->optionsLimit(10),
+                                Forms\Components\Select::make('start_verse_id')
+                                    ->searchable()
+                                    ->options(fn(Forms\Get $get) => $get('surah_id') ? Verse::where('surah_id', $get('surah_id'))->pluck('id', 'id') : [])
+                                    ->optionsLimit(10),
+                                Forms\Components\Select::make('end_verse_id')
+                                    ->searchable()
+                                    ->options(fn(Forms\Get $get) => $get('surah_id') ? Verse::where('surah_id', $get('surah_id'))->pluck('id', 'id') : [])
+                                    ->optionsLimit(10),
+                            ])
 
 
                     ])
