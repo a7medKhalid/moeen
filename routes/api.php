@@ -20,3 +20,8 @@ Route::post('/suggestions', function (Request $request){
 
     return response()->json($suggestion, 201);
 });
+
+
+Route::prefix('monset')->group(function () {
+    include 'Monset/api.php';
+});
