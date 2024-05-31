@@ -15,4 +15,8 @@ class Clip extends Model
     public function verses(): HasMany{
         return $this->hasMany(ClipHasVerses::class);
     }
+
+    public function playlists(): BelongsToMany {
+        return $this->belongsToMany(Playlist::class, 'playlist_has_clips');
+    }
 }
