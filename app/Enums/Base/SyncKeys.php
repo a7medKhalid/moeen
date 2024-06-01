@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Enums\Monset\Segment;
-enum Type{
-    const verse = 'verse';
+namespace App\Enums\Base;
+enum SyncKeys{
+    const Bookmark = 'bookmark';
+
 }
