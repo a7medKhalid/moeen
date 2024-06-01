@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
+            $table->string('entity_type')->nullable();
+            $table->unsignedBigInteger('entity_id')->nullable();
+
+            $table->unique(['entity_type', 'entity_id']);
+
             $table->string('key');
             $table->json('value');
 
