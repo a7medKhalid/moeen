@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use LaraZeus\TranslatablePro\Filament\Forms\Components\MultiLang;
 
 class PlaylistResource extends Resource
 {
@@ -23,10 +24,10 @@ class PlaylistResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->required(),
+                MultiLang::make('title')
+                    ->required(['ar']),
+                MultiLang::make('description')
+                    ->required(['ar']),
             ]);
     }
 
