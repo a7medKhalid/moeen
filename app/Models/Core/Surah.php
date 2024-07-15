@@ -9,4 +9,8 @@ class Surah extends Model
 {
     use HasFactory;
 
+    public function verses(){
+        return $this->hasMany(Verse::class);
+    }
+
 }

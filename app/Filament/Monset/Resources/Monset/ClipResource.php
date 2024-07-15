@@ -64,7 +64,9 @@ class ClipResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('description'),
+
             ])
             ->filters([
                 //
