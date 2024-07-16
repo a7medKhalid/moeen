@@ -13,8 +13,8 @@ Route::controller(Monset\PlaylistController::class)->prefix('playlists')->group(
         Route::put('playlists',  'update');
         Route::delete('playlists',  'delete');
     });
-
     Route::get('',  'index');
+    Route::get('{id}',  'show');
 
 });
 
