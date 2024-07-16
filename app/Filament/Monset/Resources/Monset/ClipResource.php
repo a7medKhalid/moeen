@@ -54,9 +54,10 @@ class ClipResource extends Resource
                                     ->options(fn(Forms\Get $get) => $get('surah_id') ? Verse::where('surah_id', $get('surah_id'))->pluck('id', 'id') : [])
                                     ->optionsLimit(10),
                             ])
+                    ]),
+                Forms\Components\Toggle::make('is_audio_changeable')
+                    ->default(true),
 
-
-                    ])
             ]);
     }
 
