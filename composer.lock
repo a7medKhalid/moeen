@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1891fe418efd5ab7e133b4c3562543c",
+    "content-hash": "7362554ccf1f39413e6c845688c1049f",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2203,6 +2203,100 @@
                 "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/3.5.6"
             },
             "time": "2024-04-09T00:35:30+00:00"
+        },
+        {
+            "name": "lara-zeus/translatable-pro",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:lara-zeus/translatable-pro.git",
+                "reference": "da67f56318f45115bd240a9af31406ced85a9e84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.larazeus.com/dist/lara-zeus/translatable-pro/lara-zeus-translatable-pro-da67f56318f45115bd240a9af31406ced85a9e84-zip-8876bf.zip",
+                "reference": "da67f56318f45115bd240a9af31406ced85a9e84",
+                "shasum": "3be9830d90924048c85887baf72af8d50362c1e0"
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "php": "^8.2",
+                "reedware/laravel-relation-joins": "^6.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "nunomaduro/larastan": "^2.0",
+                "nunomaduro/phpinsights": "^2.8",
+                "orchestra/testbench": "^9.0",
+                "phpstan/extension-installer": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaraZeus\\TranslatablePro\\TranslatableProServiceProvider"
+                    ],
+                    "aliases": {
+                        "TranslatablePro": "LaraZeus\\TranslatablePro\\Facades\\TranslatablePro"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaraZeus\\TranslatablePro\\": "src"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "pint": [
+                    "vendor/bin/pint"
+                ],
+                "test:phpstan": [
+                    "vendor/bin/phpstan analyse"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "php coder",
+                    "email": "info@larazeus.com",
+                    "role": "Owner"
+                }
+            ],
+            "description": "Zeus Translatable Pro is Advanced, Optimized, high performance Translatable Plugin for FilamentPHP",
+            "homepage": "https://larazeus.com/translatable-pro",
+            "keywords": [
+                "database",
+                "database translatable",
+                "filamentphp",
+                "lara-zeus",
+                "laravel",
+                "translatable",
+                "translatable-pro"
+            ],
+            "support": {
+                "issues": "https://github.com/lara-zeus/translatable-pro/issues",
+                "source": "https://github.com/lara-zeus/translatable-pro"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/atmonshi"
+                },
+                {
+                    "type": "custom",
+                    "url": "https://www.buymeacoffee.com/larazeus"
+                }
+            ],
+            "time": "2024-06-26T16:28:05+00:00"
         },
         {
             "name": "laravel/breeze",
@@ -4948,6 +5042,72 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "reedware/laravel-relation-joins",
+            "version": "v6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tylernathanreed/laravel-relation-joins.git",
+                "reference": "fcac3e9391e36388a5570f9f3dee869cf07bf8e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tylernathanreed/laravel-relation-joins/zipball/fcac3e9391e36388a5570f9f3dee869cf07bf8e2",
+                "reference": "fcac3e9391e36388a5570f9f3dee869cf07bf8e2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/database": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "illuminate/container": "^10.0|^11.0",
+                "laravel/pint": "^1.5",
+                "mockery/mockery": "^1.6.6",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.5",
+                "symfony/var-dumper": "^6.4.4|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Reedware\\LaravelRelationJoins\\LaravelRelationJoinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reedware\\LaravelRelationJoins\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Reed",
+                    "email": "tylernathanreed@gmail.com"
+                }
+            ],
+            "description": "Adds the ability to join on a relationship by name.",
+            "keywords": [
+                "eloquent",
+                "join",
+                "laravel",
+                "query",
+                "relation"
+            ],
+            "support": {
+                "issues": "https://github.com/tylernathanreed/laravel-relation-joins/issues",
+                "source": "https://github.com/tylernathanreed/laravel-relation-joins/tree/v6.0.1"
+            },
+            "time": "2024-03-20T17:04:54+00:00"
         },
         {
             "name": "ryangjchandler/blade-capture-directive",

@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use LaraZeus\TranslatablePro\Filament\Forms\Components\MultiLang;
 
 class ClipResource extends Resource
 {
@@ -25,10 +26,10 @@ class ClipResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->required(),
+                MultiLang::make('title')
+                    ->required(['ar']),
+                MultiLang::make('description')
+                    ->required(['ar']),
 
                 Forms\Components\Repeater::make('verses')
                     ->columnSpanFull()
@@ -53,9 +54,10 @@ class ClipResource extends Resource
                                     ->options(fn(Forms\Get $get) => $get('surah_id') ? Verse::where('surah_id', $get('surah_id'))->pluck('id', 'id') : [])
                                     ->optionsLimit(10),
                             ])
+                    ]),
+                Forms\Components\Toggle::make('is_audio_changeable')
+                    ->default(true),
 
-
-                    ])
             ]);
     }
 
@@ -63,7 +65,9 @@ class ClipResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('description'),
+
             ])
             ->filters([
                 //

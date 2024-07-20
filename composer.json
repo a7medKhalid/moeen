@@ -1,6 +1,12 @@
 {
     "name": "laravel/laravel",
     "type": "project",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.larazeus.com"
+        }
+    ],
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
@@ -8,6 +14,7 @@
         "php": "^8.2",
         "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.8",
+        "lara-zeus/translatable-pro": "^1.0",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",

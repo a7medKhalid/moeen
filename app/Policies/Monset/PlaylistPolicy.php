@@ -7,12 +7,15 @@ use Illuminate\Foundation\Auth\User;
 
 class PlaylistPolicy
 {
-
     public function update(User $user, Playlist $playlist): bool{
         return $playlist->creator_id === $user->id;
     }
 
     public function delete(User $user, Playlist $playlist): bool{
+        return $this->update($user, $playlist);
+    }
+
+    public function view(User $user, Playlist $playlist): bool{
         return $this->update($user, $playlist);
     }
 }

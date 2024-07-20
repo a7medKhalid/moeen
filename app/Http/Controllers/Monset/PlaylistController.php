@@ -13,7 +13,7 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $playlists = Playlist::getPublic()->with('clips')->paginate();
+        $playlists = Playlist::getPublic()->paginate();
 
         return response()->json($playlists);
     }
@@ -23,7 +23,7 @@ class PlaylistController extends Controller
      */
     public function private()
     {
-        $playlists = Playlist::getPrivate()->with('clips')->paginate();
+        $playlists = Playlist::getPrivate()->paginate();
 
         return response()->json($playlists);
     }
@@ -56,5 +56,24 @@ class PlaylistController extends Controller
     public function destroy(Request $request)
     {
         return response()->json(Playlist::deletePlaylist($request->data));
+    }
+
+    public function show(Request $request)
+    {
+        $playlist = Playlist::find($request->id);
+
+        if ($playlist->creator_id !== null and auth()->user() === null) {
+            abort(403);
+        }elseif ($playlist->creator_id !== null){
+            if (auth()->user()->cannot('view', $playlist)) {
+                abort(403);
+            }
+        }
+
+
+        return response()->json([
+            'playlist' => $playlist,
+            'clips' => $playlist->clips()->paginate()
+        ]);
     }
 }
