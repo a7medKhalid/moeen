@@ -3,6 +3,7 @@
 namespace App\Models\Monset;
 
 use App\Models\Core\Verse;
+use App\Models\Monset\Traits\ClipHasData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,6 +16,7 @@ class Clip extends Model
 {
     use HasFactory;
     use HasPhrases;
+    use ClipHasData;
 
     protected $casts = [
         'title' => PhrasesCast::class,

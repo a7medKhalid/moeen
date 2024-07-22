@@ -21,16 +21,15 @@ class ClipHasVerses extends Pivot
         return $this->belongsTo(AudioFile::class);
     }
 
-    public function getRelatedAudioFiles(){
-        $segments = Segment::where('type', Type::verse)->whereBetween('type_id', [$this->start_verse_id, $this->end_verse_id])->get();
+    public function getRelatedAudioFiles($audioFileId){
+        $segments = Segment::where('audio_file_id',$audioFileId)->where('type', Type::verse)->whereBetween('type_id', [$this->start_verse_id, $this->end_verse_id])->get();
 
-        return $segments->map(function ($segment){
+        return $segments->map(function ($segment) use ($audioFileId){
            return [
                'id' => $segment->id,
                'start' => (int)$segment->start_time,
                'end' => (int)$segment->end_time,
-               'url' => $segment->audioFile?->url
-//               'url' => $segment->defaultAudioFile?->url,
+               'url' => AudioFile::find($audioFileId)->url,
            ];
         });
     }
