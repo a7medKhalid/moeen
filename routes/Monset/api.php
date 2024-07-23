@@ -27,4 +27,6 @@ Route::controller(Monset\ClipsController::class)->prefix('clips')->group(functio
     Route::get('{id}/audioFiles', 'audioFiles');
 });
 
-
+Route::controller(Monset\FeedController::class)->prefix('feed')->group(function () {
+    Route::get('',  'index');
+});
