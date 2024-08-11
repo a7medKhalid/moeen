@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Verse extends Model
 {
-    use HasFactory {
+    use HasFactory;
 
-    }
-
-    protected function orderId(): Attribute {
-        return Attribute::get(fn(Model $record) => $record->surah_id . ':' . $record->order);
+    protected function orderedId(): Attribute{
+        return Attribute::get(fn() => $this->surah_id . ':' . $this->order);
     }
 }
