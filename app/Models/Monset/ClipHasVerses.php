@@ -25,11 +25,13 @@ class ClipHasVerses extends Pivot
         $segments = Segment::where('audio_file_id',$audioFileId)->where('type', Type::verse)->whereBetween('type_id', [$this->start_verse_id, $this->end_verse_id])->get();
 
         return $segments->map(function ($segment) use ($audioFileId){
+            $audioFile = AudioFile::find($audioFileId);
            return [
                'id' => $segment->id,
                'start' => (int)$segment->start_time,
                'end' => (int)$segment->end_time,
-               'url' => AudioFile::find($audioFileId)->url,
+               'url' => $audioFile->url,
+               'audio_file_id' => $audioFile->id,
            ];
         });
     }
