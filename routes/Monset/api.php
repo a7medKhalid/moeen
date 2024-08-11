@@ -18,13 +18,18 @@ Route::controller(Monset\PlaylistController::class)->prefix('playlists')->group(
 
 });
 
-
 Route::get('clips', function () {
     return response()->json(\App\Models\Monset\Clip::all());
 });
+
 Route::controller(Monset\ClipsController::class)->prefix('clips')->group(function () {
     Route::get('{id}', 'show');
     Route::get('{id}/audioFiles', 'audioFiles');
 });
+
+Route::controller(Monset\SearchController::class)->prefix('search')->group(function () {
+    Route::get('', 'search');
+});
+
 
 
