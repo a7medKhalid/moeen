@@ -3,6 +3,8 @@
 namespace App\Models\Core;
 
 use App\Models\Monset\Clip;
+use App\Models\Monset\ClipHasVerses;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +18,8 @@ class Verse extends Model
         return Attribute::get(fn() => $this->surah_id . ':' . $this->order);
     }
 
-    public function clips(): BelongsToMany{
-        return $this->belongsToMany(Clip::class, 'clip_has_verses');
+    public function clips(): Builder {
+        $clipsIds = ClipHasVerses::where('start_verse_id', '<=', $this->id)->where('end_verse_id', '>=', $this->id)->pluck('clip_id');
+        return Clip::whereIn('id', $clipsIds);
     }
 }
