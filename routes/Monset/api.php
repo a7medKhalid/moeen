@@ -24,7 +24,7 @@ Route::get('clips', function () {
 
 Route::controller(Monset\ClipsController::class)->prefix('clips')->group(function () {
     Route::get('{id}', 'show');
-    Route::get('{id}/audioFiles', 'audioFiles');
+    Route::get('{id}/audio-files', 'audioFiles');
 });
 
 Route::controller(Monset\SearchController::class)->prefix('search')->group(function () {
