@@ -34,3 +34,8 @@ Route::controller(Monset\SearchController::class)->prefix('search')->group(funct
 Route::controller(Monset\FeedController::class)->prefix('feed')->group(function () {
     Route::get('',  'index');
 });
+
+
+Route::get('test' , function(){
+    return \App\Models\Monset\Reciter::pluck('name');
+});
