@@ -1,0 +1,47 @@
+### GET all clips
+GET http://moeen.test/api/monset/clips
+Accept: application/json
+
+### GET clip by id
+
+GET http://moeen.test/api/monset/clips/112
+Accept: application/json
+
+### GET clip with custom audio file
+
+GET http://moeen.test/api/monset/clips/1?audio-file-id=1
+Accept: application/json
+
+
+### GET clip audio files
+
+GET http://moeen.test/api/monset/clips/112/audio-files
+Accept: application/json
+
+
+### GET all reciters
+
+GET http://moeen.test/api/monset/reciters
+Accept: application/json
+
+### GET reciter by id
+
+GET http://moeen.test/api/monset/reciters
+Accept: application/json
+
+### GET playlists
+
+GET http://moeen.test/api/monset/playlists
+Accept: application/json
+
+### GET playlist by id
+
+GET http://moeen.test/api/monset/playlists/1
+Accept: application/json
+
+### GET feed
+
+GET http://moeen.test/api/monset/feed
+Accept: application/json
+
+###

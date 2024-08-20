@@ -19,6 +19,7 @@ class ClipsController extends Controller
         return response()->json($audioFiles);
 
     }
+
     public function show($id){
         $clip = Clip::find($id);
         $audioFileId = request()->get('audioFileId');
@@ -63,22 +64,22 @@ class ClipsController extends Controller
             $segments = Segment::where('audio_file_id', $audioFileId)->where('end_time', '<=',$times["end"] )->get();
             $segments = $segments->map(function ($segment) {
                 return [
-                    'start' => $segment->start_time,
-                    'end' => $segment->end_time,
-                    'verseOrderedId' => $segment->verse?->orderedId,
+                    'start' => (int) $segment->start_time,
+                    'end' => (int) $segment->end_time,
+                    'verseKey' => $segment->verse?->orderedId,
                 ];
             });
+
+
             $combined_data[] = [
-                "id" => $id_counter,
+                "id" => $times['audio_file_id'],
                 "start" => $times["start"],
                 "end" => $times["end"],
                 "url" => $url,
-                'audio_file_id' => $times['audio_file_id'],
+                'reciter' => AudioFile::find($times['audio_file_id'])->reciter,
                 'segments' => $segments,
             ];
-            $id_counter++;
         }
-
 
         return response()->json([
             'id' => $clip->id,
