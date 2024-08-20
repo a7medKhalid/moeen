@@ -11,17 +11,20 @@ class SearchController extends Controller
 {
     public function search(){
 
-        $stringVersesIds = (array)request()->get('versesIds');
+        $stringVersesKeys = request()->get('verses-keys');
         $search = request()->get('search');
-//        $stringVersesIds = ['1:2', '2:3', '3:4'];
-//        $search = 'الفاتحة';
+
+        $VersesKeys = explode(',', $stringVersesKeys);
 
         $searchClips = Clip::whereHas('phrases', function ($query) use ($search){
             $query->where('value', 'like', "%$search%");
         })->get();
 
+        if (is_null($stringVersesKeys)) {
+            return response()->json($searchClips);
+        }
         $versesClips = collect();
-        foreach ($stringVersesIds as $verse){
+        foreach ($VersesKeys as $verse){
             $verse = explode(':', $verse);
             $surah = (int)$verse[0];
             $verse = (int)$verse[1];
