@@ -47,7 +47,6 @@ class importTopics extends Command
                     ++$counter;
 
                     $versesKeys = explode(',', $datum['ayahs']);
-                    if (empty($versesKeys[0]) ) continue;
 
                     $topic = Topic::create([
                        'title' => [
@@ -57,6 +56,10 @@ class importTopics extends Command
                        'parent_id' => $datum['parent_id'],
                    ]);
 
+                    $this->info('The command was successful! ' . $counter);
+
+                    if (empty($versesKeys[0]) ) continue;
+
                     foreach ($versesKeys as $verse){
                         $verse = explode(':', $verse);
                         $surah = (int)$verse[0];
@@ -65,8 +68,6 @@ class importTopics extends Command
 
                         $topic->verses()->attach($verse);
                     }
-
-                    $this->info('The command was successful! ' . $counter);
 
                 }
 
