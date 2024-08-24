@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
+            $table->unsignedBigInteger('apiId')->nullable();
             $table->foreignId('parent_id')->nullable();
         });
     }

@@ -53,6 +53,7 @@ class importTopics extends Command
                            'ar' => $datum['name'],
                            'en' => '',
                        ],
+                       'apiId' => $datum['id'],
                        'parent_id' => $datum['parent_id'],
                    ]);
 
