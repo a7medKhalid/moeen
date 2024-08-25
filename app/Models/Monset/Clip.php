@@ -23,7 +23,7 @@ class Clip extends Model
         'description' => PhrasesCast::class,
     ];
 
-    public function verses(): HasMany{
+    public function verses(): HasMany {
         return $this->hasMany(ClipHasVerses::class);
     }
 

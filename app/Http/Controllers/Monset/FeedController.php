@@ -10,8 +10,12 @@ class FeedController extends Controller
     public function index()
     {
         $playlists = Playlist::getPublic()
+            ->inRandomOrder()
+            ->limit(20)
             ->with(['clips' => function($query) {
-                $query->take(10);
+                $query
+                    ->inRandomOrder()
+                    ->take(10);
             }])
             ->get();
         return $playlists;
