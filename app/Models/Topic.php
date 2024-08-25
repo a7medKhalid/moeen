@@ -19,6 +19,7 @@ class Topic extends Model
     ];
 
     public function verses(): BelongsToMany {
-        return $this->belongsToMany(Verse::class, 'topic_has_verses');
+        return $this->belongsToMany(Verse::class, 'topic_has_verses')
+                    ->orderByPivot('verse_id');
     }
 }
