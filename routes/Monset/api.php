@@ -35,6 +35,15 @@ Route::controller(Monset\FeedController::class)->prefix('feed')->group(function 
     Route::get('',  'index');
 });
 
+Route::middleware('auth')->group(function (){
+    Route::controller(Monset\KhatmahController::class)->prefix('khatmas')->group(function () {
+        Route::get('',  'index');
+        Route::get('{id}', 'show');
+        Route::post('', 'create');
+        Route::post('{id}', 'update');
+    });
+});
+
 
 Route::get('test' , function(){
     return \App\Models\Monset\Reciter::pluck('name');
